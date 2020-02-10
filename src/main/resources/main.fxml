@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- FXML 里面都会要配置一个对应的Controller类 -->
+
+<VBox prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dantegarden.updatehosts.controller.MainController">
+
+    <padding>
+        <Insets topRightBottomLeft="10" />
+    </padding>
+
+    <HBox spacing="10">
+        <padding>
+            <Insets bottom="10" />
+        </padding>
+        <TextField fx:id="tfGitDir" prefHeight="30.0" prefWidth="646.0" />
+        <Button onAction="#selectGitDir" text="选择存放google hosts的位置" />
+    </HBox>
+
+    <!--暴露给controller-->
+    <TableView fx:id="lvDomain" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn text="域名">
+                <cellValueFactory>
+                    <PropertyValueFactory property="host" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="ip地址">
+                <cellValueFactory>
+                    <PropertyValueFactory property="ip" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="创建时间">
+                <cellValueFactory>
+                    <PropertyValueFactory property="createDate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="更新时间">
+                <cellValueFactory>
+                    <PropertyValueFactory property="updateDate" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <HBox prefHeight="22.0" prefWidth="880.0" spacing="10">
+        <padding>
+            <Insets top="10" />
+        </padding>
+        <TextField fx:id="newDomain" prefHeight="30.0" prefWidth="200.0" />
+        <Button onAction="#addDomain" text="添加附加域名" />
+        <Button onAction="#deleteDomain" text="删除" />
+        <ButtonBar prefHeight="30.0" prefWidth="223.0" visible="false" />
+        <ProgressBar fx:id="pb" prefHeight="23.0" prefWidth="137.0" progress="0.0" />
+        <Button mnemonicParsing="false" onAction="#updateHosts" prefHeight="30.0" prefWidth="106.0" text="更新hosts" />
+    </HBox>
+</VBox>
